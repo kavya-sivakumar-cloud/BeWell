@@ -1,0 +1,283 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>BeWell - Activity Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,200..800;1,200..800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#eff1f0",
+                        "surface-dim": "#d8dada",
+                        "on-secondary-fixed-variant": "#234d51",
+                        "primary-fixed-dim": "#87d2e4",
+                        "surface-tint": "#086878",
+                        "on-primary-fixed-variant": "#004e5b",
+                        "text-main": "#1A2E35",
+                        "on-primary-container": "#f3fcff",
+                        "on-secondary-container": "#40696d",
+                        "background": "#f8faf9",
+                        "on-secondary-fixed": "#002022",
+                        "inverse-primary": "#87d2e4",
+                        "tertiary-container": "#a76227",
+                        "on-surface-variant": "#3f484b",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "sos-red": "#D9534F",
+                        "outline-variant": "#bec8cb",
+                        "success-teal": "#4A9E91",
+                        "tertiary": "#894a0f",
+                        "secondary": "#3c6569",
+                        "surface-container": "#eceeed",
+                        "primary-container": "#2d7d8e",
+                        "on-surface": "#191c1c",
+                        "secondary-container": "#bce7ec",
+                        "surface-container-highest": "#e1e3e2",
+                        "surface-container-low": "#f2f4f3",
+                        "surface": "#f8faf9",
+                        "on-primary-fixed": "#001f26",
+                        "on-tertiary-fixed": "#2f1400",
+                        "error": "#ba1a1a",
+                        "on-tertiary-container": "#fff9f6",
+                        "surface-bright": "#f8faf9",
+                        "on-primary": "#ffffff",
+                        "surface-container-high": "#e6e9e8",
+                        "tertiary-fixed": "#ffdcc4",
+                        "surface-blue": "#E6F0F2",
+                        "on-error-container": "#93000a",
+                        "surface-variant": "#e1e3e2",
+                        "inverse-surface": "#2e3131",
+                        "on-secondary": "#ffffff",
+                        "outline": "#6f797c",
+                        "tertiary-fixed-dim": "#ffb780",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed-variant": "#6f3800",
+                        "secondary-fixed": "#bfeaee",
+                        "primary-fixed": "#a9edff",
+                        "primary": "#006474",
+                        "secondary-fixed-dim": "#a4ced2",
+                        "on-background": "#191c1c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-padding": "20px",
+                        "section-gap": "32px",
+                        "base": "8px",
+                        "stack-gap": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Atkinson Hyperlegible Next"],
+                        "label-sm": ["Atkinson Hyperlegible Next"],
+                        "headline-lg": ["Atkinson Hyperlegible Next"],
+                        "body-md": ["Atkinson Hyperlegible Next"],
+                        "headline-md": ["Atkinson Hyperlegible Next"],
+                        "body-lg": ["Atkinson Hyperlegible Next"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", { "lineHeight": "30px", "fontWeight": "700" }],
+                        "label-sm": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+                        "headline-lg": ["30px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "26px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        /* SOS Button Progress Animation */
+        @keyframes sos-pulse {
+            0% { box-shadow: 0 0 0 0 rgba(217, 83, 79, 0.4); }
+            70% { box-shadow: 0 0 0 20px rgba(217, 83, 79, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(217, 83, 79, 0); }
+        }
+        .sos-active {
+            animation: sos-pulse 1.5s infinite;
+        }
+        
+        .glass-card {
+            background: rgba(230, 240, 242, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .soft-shadow {
+            box-shadow: 0 8px 24px rgba(45, 125, 142, 0.08);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen pb-24 md:pb-0 md:pl-80 flex flex-col font-body-md">
+<!-- TopAppBar (Mobile) -->
+<header class="md:hidden flex justify-between items-center w-full px-container-padding py-4 max-w-7xl mx-auto bg-background dark:bg-background sticky top-0 z-40">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="A small circular avatar placeholder image showing a calm abstract gradient pattern in soft teal and cream colors, suitable for a serene user profile picture in a health app." src="https://lh3.googleusercontent.com/aida-public/AB6AXuANUICoqZaHX0La6yPv50422yRDTBI85FvWcjMRZYBPBBrVrZ2nURGwDof28uLlQIqsjRVfR0J5at7neKAcHuyHNNAgR0OxpYu43MsiBDlKLsZnxVZKFYwzs04-8NyAIYS9rVvwAEWeFHg5bvVAiMmI8zCa0TIh7VJUo59wM9-vuhMCbH6nw2VUS59RiFcZWWX0JnrSTTbAC6huPPscigba5PFstKvo72bLYGrlDwt3A1gKSZf-X8p44A">
+<h1 class="text-headline-md font-headline-md font-bold text-primary dark:text-primary-fixed-dim">BeWell</h1>
+</div>
+<button class="w-12 h-12 flex items-center justify-center rounded-full hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim" style="font-variation-settings: 'FILL' 0;">notifications</span>
+</button>
+</header>
+<!-- Navigation Drawer (Desktop) -->
+<aside class="hidden md:flex flex-col h-full p-4 bg-surface dark:bg-surface-dim shadow-xl h-full w-80 rounded-r-xl fixed left-0 top-0 z-50">
+<div class="flex items-center gap-4 mb-8 px-4 py-2">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="A circular profile avatar showing a calm abstract gradient pattern in soft teal and cream colors, suitable for a serene user profile picture in a health app." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaWme9IXScMxdObAer62JtgaVr3ZQZlSZ8VnmfnrvbJcnxhDbwoEqwRk0xzvX727IXIePFnH3iL7BDqI8GZgB2SAC3obip26oT9p9cXB3oMNAGF3ctAhWwdd8YMLcS0SSGViu_RhKk8U4Bn5K1EZ2BjQPKups8tmRLVzu5ZSOYbmAYp74A8OQ_Vl0we-O0oPv3eB0ydxg-sUuWgnf_Cm8jihKTlrsVvsR5VbJUMUzmJKsqI9HFR80Cng">
+<div>
+<h2 class="text-headline-md font-headline-md text-primary">Your Wellness</h2>
+<p class="text-body-md font-body-md text-on-surface-variant">Stay Mindful</p>
+</div>
+</div>
+<nav class="flex-1 flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:bg-primary-container/50 transition-colors" href="#">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="text-body-md font-body-md">Chatbox</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:bg-primary-container/50 transition-colors" href="#">
+<span class="material-symbols-outlined">diversity_3</span>
+<span class="text-body-md font-body-md">Connecting</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:bg-primary-container/50 transition-colors" href="#">
+<span class="material-symbols-outlined">psychology_alt</span>
+<span class="text-body-md font-body-md">Chatbot</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:bg-primary-container/50 transition-colors" href="#">
+<span class="material-symbols-outlined">local_hospital</span>
+<span class="text-body-md font-body-md">Doctor</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:bg-primary-container/50 transition-colors" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="text-body-md font-body-md">Reports</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-primary-container text-on-primary-container font-semibold hover:bg-primary-container/50 transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-body-md font-body-md">Activity</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:bg-primary-container/50 transition-colors" href="#">
+<span class="material-symbols-outlined">videogame_asset</span>
+<span class="text-body-md font-body-md">Games</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 w-full max-w-4xl mx-auto px-container-padding py-6 flex flex-col gap-section-gap">
+<!-- Header Section -->
+<section class="flex flex-col gap-2">
+<h2 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg-mobile md:font-headline-lg text-primary">Today's Plan</h2>
+<p class="text-body-lg font-body-lg text-on-surface-variant">Here is a gentle overview of your day.</p>
+</section>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-gap">
+<!-- Medications/Reminders Column -->
+<div class="flex flex-col gap-stack-gap">
+<h3 class="text-headline-md font-headline-md text-secondary mb-2">Medications</h3>
+<!-- Reminder Card 1 -->
+<div class="glass-card soft-shadow rounded-xl p-5 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined">medication</span>
+</div>
+<div>
+<h4 class="text-body-lg font-body-lg font-semibold text-text-main">Morning Supplement</h4>
+<p class="text-label-sm font-label-sm text-outline">8:00 AM • After food</p>
+</div>
+</div>
+<button aria-label="Mark Done" class="w-10 h-10 rounded-full border-2 border-outline-variant flex items-center justify-center text-outline hover:border-success-teal hover:text-success-teal transition-colors">
+<span class="material-symbols-outlined text-2xl">check</span>
+</button>
+</div>
+<!-- Reminder Card 2 -->
+<div class="glass-card soft-shadow rounded-xl p-5 flex items-center justify-between opacity-70">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-success-teal">check_circle</span>
+</div>
+<div>
+<h4 class="text-body-lg font-body-lg font-semibold text-text-main line-through decoration-outline">Vitamin D</h4>
+<p class="text-label-sm font-label-sm text-outline">Taken at 7:30 AM</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Activities & Diet Column -->
+<div class="flex flex-col gap-stack-gap">
+<h3 class="text-headline-md font-headline-md text-secondary mb-2">Gentle Activities</h3>
+<!-- Activity Card -->
+<div class="glass-card soft-shadow rounded-xl p-6 flex flex-col gap-4">
+<div class="flex items-start justify-between">
+<div>
+<h4 class="text-headline-md font-headline-md text-primary">Mindful Breathing</h4>
+<p class="text-body-md font-body-md text-on-surface-variant mt-1">5 minutes of guided relaxation.</p>
+</div>
+<span class="material-symbols-outlined text-3xl text-primary-fixed-dim">air</span>
+</div>
+<button class="w-full h-12 rounded-full bg-primary text-on-primary font-label-sm text-label-sm hover:opacity-90 transition-opacity">
+                        Start Session
+                    </button>
+</div>
+<h3 class="text-headline-md font-headline-md text-secondary mt-4 mb-2">Diet Suggestions</h3>
+<!-- Diet Card -->
+<div class="glass-card soft-shadow rounded-xl p-5 flex items-start gap-4">
+<div class="w-14 h-14 rounded-lg bg-surface-bright flex-shrink-0 flex items-center justify-center overflow-hidden">
+<span class="material-symbols-outlined text-3xl text-tertiary-container">restaurant_menu</span>
+</div>
+<div>
+<h4 class="text-body-lg font-body-lg font-semibold text-text-main">Light Lunch</h4>
+<p class="text-body-md font-body-md text-on-surface-variant mt-1">Steamed vegetables or a gentle soup to soothe digestion.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Persistent SOS Button -->
+<button aria-label="SOS Emergency Help" class="fixed right-container-padding bottom-24 md:bottom-container-padding z-50 w-16 h-16 rounded-full bg-sos-red text-on-error flex items-center justify-center shadow-lg hover:opacity-90 transition-opacity" id="sosBtn">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">emergency</span>
+</button>
+<!-- BottomNavBar (Mobile) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 pb-4 pt-2 bg-surface-container-low/80 dark:bg-surface-container-highest/80 backdrop-blur-md rounded-t-xl shadow-[0_8px_24px_rgba(45,125,142,0.08)] border-none"><a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-2 py-1 hover:bg-surface-container-high dark:hover:bg-surface-variant rounded-full" href="#"><span class="material-symbols-outlined">chat</span><span class="text-label-sm font-label-sm">Chat</span></a><a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-2 py-1 hover:bg-surface-container-high dark:hover:bg-surface-variant rounded-full" href="#"><span class="material-symbols-outlined">group</span><span class="text-label-sm font-label-sm">Peers</span></a><a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-2 py-1 hover:bg-surface-container-high dark:hover:bg-surface-variant rounded-full" href="#"><span class="material-symbols-outlined">smart_toy</span><span class="text-label-sm font-label-sm">AI</span></a><a class="flex flex-col items-center justify-center bg-secondary-container dark:bg-on-secondary-fixed-variant text-on-secondary-container dark:text-secondary-fixed rounded-full px-2 py-1 scale-90 transition-all duration-300" href="#"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">medical_services</span><span class="text-label-sm font-label-sm">Health</span></a><a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-2 py-1 hover:bg-surface-container-high dark:hover:bg-surface-variant rounded-full" href="#"><span class="material-symbols-outlined">videogame_asset</span><span class="text-label-sm font-label-sm">Games</span></a><a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-2 py-1 hover:bg-surface-container-high dark:hover:bg-surface-variant rounded-full" href="#"><span class="material-symbols-outlined">grid_view</span><span class="text-label-sm font-label-sm">More</span></a></nav>
+<script>
+        // Simple SOS Button Interaction Logic (Hold to trigger)
+        const sosBtn = document.getElementById('sosBtn');
+        let pressTimer;
+
+        sosBtn.addEventListener('mousedown', startPress);
+        sosBtn.addEventListener('touchstart', startPress);
+        
+        sosBtn.addEventListener('mouseup', cancelPress);
+        sosBtn.addEventListener('mouseleave', cancelPress);
+        sosBtn.addEventListener('touchend', cancelPress);
+
+        function startPress(e) {
+            if(e.type !== 'mousedown') e.preventDefault();
+            sosBtn.classList.add('sos-active');
+            pressTimer = setTimeout(() => {
+                alert('SOS Activated. Contacting support network...');
+                sosBtn.classList.remove('sos-active');
+            }, 2000); // 2 second hold
+        }
+
+        function cancelPress() {
+            clearTimeout(pressTimer);
+            sosBtn.classList.remove('sos-active');
+        }
+    </script>
+
+
+</body></html>

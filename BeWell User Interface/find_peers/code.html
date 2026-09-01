@@ -1,0 +1,490 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Connecting - BeWell</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "inverse-on-surface": "#eff1f0",
+                      "surface-dim": "#d8dada",
+                      "on-secondary-fixed-variant": "#234d51",
+                      "primary-fixed-dim": "#87d2e4",
+                      "surface-tint": "#086878",
+                      "on-primary-fixed-variant": "#004e5b",
+                      "text-main": "#1A2E35",
+                      "on-primary-container": "#f3fcff",
+                      "on-secondary-container": "#40696d",
+                      "background": "#f8faf9",
+                      "on-secondary-fixed": "#002022",
+                      "inverse-primary": "#87d2e4",
+                      "tertiary-container": "#a76227",
+                      "on-surface-variant": "#3f484b",
+                      "on-tertiary": "#ffffff",
+                      "on-error": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "sos-red": "#D9534F",
+                      "outline-variant": "#bec8cb",
+                      "success-teal": "#4A9E91",
+                      "tertiary": "#894a0f",
+                      "secondary": "#3c6569",
+                      "surface-container": "#eceeed",
+                      "primary-container": "#2d7d8e",
+                      "on-surface": "#191c1c",
+                      "secondary-container": "#bce7ec",
+                      "surface-container-highest": "#e1e3e2",
+                      "surface-container-low": "#f2f4f3",
+                      "surface": "#f8faf9",
+                      "on-primary-fixed": "#001f26",
+                      "on-tertiary-fixed": "#2f1400",
+                      "error": "#ba1a1a",
+                      "on-tertiary-container": "#fff9f6",
+                      "surface-bright": "#f8faf9",
+                      "on-primary": "#ffffff",
+                      "surface-container-high": "#e6e9e8",
+                      "tertiary-fixed": "#ffdcc4",
+                      "surface-blue": "#E6F0F2",
+                      "on-error-container": "#93000a",
+                      "surface-variant": "#e1e3e2",
+                      "inverse-surface": "#2e3131",
+                      "on-secondary": "#ffffff",
+                      "outline": "#6f797c",
+                      "tertiary-fixed-dim": "#ffb780",
+                      "surface-container-lowest": "#ffffff",
+                      "on-tertiary-fixed-variant": "#6f3800",
+                      "secondary-fixed": "#bfeaee",
+                      "primary-fixed": "#a9edff",
+                      "primary": "#006474",
+                      "secondary-fixed-dim": "#a4ced2",
+                      "on-background": "#191c1c"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "container-padding": "20px",
+                      "section-gap": "32px",
+                      "base": "8px",
+                      "stack-gap": "16px"
+              },
+              "fontFamily": {
+                      "headline-lg-mobile": [
+                              "Atkinson Hyperlegible Next"
+                      ],
+                      "label-sm": [
+                              "Atkinson Hyperlegible Next"
+                      ],
+                      "headline-lg": [
+                              "Atkinson Hyperlegible Next"
+                      ],
+                      "body-md": [
+                              "Atkinson Hyperlegible Next"
+                      ],
+                      "headline-md": [
+                              "Atkinson Hyperlegible Next"
+                      ],
+                      "body-lg": [
+                              "Atkinson Hyperlegible Next"
+                      ]
+              },
+              "fontSize": {
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "30px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "30px",
+                              {
+                                      "lineHeight": "36px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "26px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+        }
+        
+        .glass-card {
+            background: rgba(230, 240, 242, 0.6); /* surface-blue with opacity */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 8px 32px 0 rgba(45, 125, 142, 0.05); /* Soft primary teal tinted shadow */
+        }
+
+        .avatar-gradient-1 { background: linear-gradient(135deg, #a9edff 0%, #87d2e4 100%); }
+        .avatar-gradient-2 { background: linear-gradient(135deg, #bce7ec 0%, #a4ced2 100%); }
+        .avatar-gradient-3 { background: linear-gradient(135deg, #e1e3e2 0%, #bec8cb 100%); }
+        
+        .sos-button-wrapper {
+            position: fixed;
+            bottom: calc(5rem + env(safe-area-inset-bottom));
+            right: 1.5rem;
+            z-index: 40;
+        }
+
+        .sos-button {
+            width: 56px;
+            height: 56px;
+            background-color: theme('colors.sos-red');
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 4px 12px rgba(217, 83, 79, 0.3);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            border: none;
+            outline: none;
+        }
+
+        .sos-button:active {
+            transform: scale(0.95);
+        }
+
+        .sos-progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top-color: transparent;
+            animation: none;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .sos-button.holding .sos-progress {
+            animation: spin 2s linear forwards;
+            opacity: 1;
+            border-top-color: white;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Material Symbols Setup */
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Hide scrollbar for clean horizontal scroll */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col md:flex-row pb-24 md:pb-0">
+<!-- Mobile Top App Bar -->
+<header class="md:hidden sticky top-0 z-50 bg-background dark:bg-background flat no shadows flex justify-between items-center w-full px-container-padding py-4 max-w-7xl mx-auto">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center overflow-hidden">
+<span class="material-symbols-outlined text-outline" data-icon="person">person</span>
+</div>
+<h1 class="text-headline-md font-headline-md font-bold text-primary dark:text-primary-fixed-dim tracking-tight">BeWell</h1>
+</div>
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-primary dark:text-primary-fixed-dim hover:opacity-80 transition-opacity active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</header>
+<!-- Desktop Side Nav (Navigation Drawer) -->
+<nav class="hidden md:flex flex-col h-full w-80 rounded-r-xl bg-surface dark:bg-surface-dim shadow-xl fixed left-0 top-0 z-40 p-4 border-r border-outline-variant/30">
+<!-- Header -->
+<div class="flex items-center gap-4 mb-8 p-2">
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center overflow-hidden">
+<span class="material-symbols-outlined text-outline text-2xl" data-icon="person">person</span>
+</div>
+<div>
+<h2 class="text-headline-md font-headline-md text-primary dark:text-primary-fixed-dim font-bold">Your Wellness</h2>
+<p class="text-body-md font-body-md text-on-surface-variant">Stay Mindful</p>
+</div>
+</div>
+<!-- Links -->
+<div class="flex flex-col gap-2 flex-grow">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:bg-primary-container/50 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+<span class="text-body-md font-body-md">Chatbox</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-primary-container text-on-primary-container font-semibold rounded-lg hover:bg-primary-container/50 transition-colors active:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="diversity_3" data-weight="fill" style="font-variation-settings: 'FILL' 1;">diversity_3</span>
+<span class="text-body-md font-body-md">Connecting</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:bg-primary-container/50 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="psychology_alt">psychology_alt</span>
+<span class="text-body-md font-body-md">Chatbot</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:bg-primary-container/50 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="local_hospital">local_hospital</span>
+<span class="text-body-md font-body-md">Doctor</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:bg-primary-container/50 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="text-body-md font-body-md">Reports</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:bg-primary-container/50 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-body-md font-body-md">Activity</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:bg-primary-container/50 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="videogame_asset">videogame_asset</span>
+<span class="text-body-md font-body-md">Games</span>
+</a>
+</div>
+<!-- Desktop Footer Info within Drawer -->
+<div class="mt-auto pt-6 border-t border-outline-variant/30 flex flex-col gap-2">
+<a class="text-label-sm font-label-sm text-secondary hover:text-primary transition-colors" href="#">Help Center</a>
+<p class="text-label-sm font-label-sm text-outline-variant">© 2024 BeWell</p>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 w-full max-w-7xl mx-auto px-container-padding md:ml-80 pt-4 md:pt-12 pb-12">
+<!-- Page Header -->
+<div class="mb-section-gap">
+<h1 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg-mobile md:font-headline-lg text-primary mb-2">Find a Connection</h1>
+<p class="text-body-md font-body-md text-on-surface-variant max-w-2xl">Connect with anonymous peers who share similar experiences. Your real identity remains hidden.</p>
+</div>
+<!-- Filter / Quick Tags -->
+<div class="mb-section-gap overflow-x-auto hide-scrollbar">
+<div class="flex gap-3 w-max pb-2">
+<button class="px-4 py-2 rounded-full bg-secondary-container text-on-secondary-container text-label-sm font-label-sm whitespace-nowrap">All Experiences</button>
+<button class="px-4 py-2 rounded-full bg-surface-container-high text-on-surface-variant hover:bg-surface-variant text-label-sm font-label-sm whitespace-nowrap border border-outline-variant/30">Anxiety</button>
+<button class="px-4 py-2 rounded-full bg-surface-container-high text-on-surface-variant hover:bg-surface-variant text-label-sm font-label-sm whitespace-nowrap border border-outline-variant/30">Stress</button>
+<button class="px-4 py-2 rounded-full bg-surface-container-high text-on-surface-variant hover:bg-surface-variant text-label-sm font-label-sm whitespace-nowrap border border-outline-variant/30">Depression</button>
+<button class="px-4 py-2 rounded-full bg-surface-container-high text-on-surface-variant hover:bg-surface-variant text-label-sm font-label-sm whitespace-nowrap border border-outline-variant/30">Burnout</button>
+</div>
+</div>
+<!-- Peer Grid (Bento-style layout) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-stack-gap">
+<!-- Profile Card 1 -->
+<div class="glass-card rounded-xl p-6 flex flex-col gap-4 relative overflow-hidden group">
+<!-- Decorative background element -->
+<div class="absolute -top-12 -right-12 w-32 h-32 bg-primary-fixed rounded-full blur-3xl opacity-20 group-hover:opacity-40 transition-opacity"></div>
+<div class="flex justify-between items-start z-10">
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 rounded-full avatar-gradient-1 flex items-center justify-center text-on-primary-container shadow-sm border border-white/20">
+<span class="material-symbols-outlined" data-icon="forest" data-weight="fill" style="font-variation-settings: 'FILL' 1;">forest</span>
+</div>
+<div>
+<h3 class="text-headline-md font-headline-md text-text-main">WanderingPine</h3>
+<span class="inline-flex items-center gap-1 text-label-sm font-label-sm text-secondary">
+<span class="w-2 h-2 rounded-full bg-success-teal"></span> Active recently
+                            </span>
+</div>
+</div>
+</div>
+<div class="space-y-2 z-10">
+<p class="text-label-sm font-label-sm text-outline font-semibold uppercase tracking-wider text-[11px]">Shared Experience</p>
+<div class="inline-block px-3 py-1 bg-surface-container-high text-on-surface-variant rounded-md text-label-sm font-label-sm">
+                        Anxiety &amp; Burnout
+                    </div>
+</div>
+<div class="space-y-2 z-10">
+<p class="text-label-sm font-label-sm text-outline font-semibold uppercase tracking-wider text-[11px]">Interests</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 bg-surface-bright/50 border border-outline-variant/20 rounded text-label-sm font-label-sm text-on-surface-variant text-xs">Reading</span>
+<span class="px-2 py-1 bg-surface-bright/50 border border-outline-variant/20 rounded text-label-sm font-label-sm text-on-surface-variant text-xs">Meditation</span>
+<span class="px-2 py-1 bg-surface-bright/50 border border-outline-variant/20 rounded text-label-sm font-label-sm text-on-surface-variant text-xs">Gardening</span>
+</div>
+</div>
+<button class="mt-auto z-10 w-full h-[48px] bg-primary text-on-primary rounded-lg text-label-sm font-label-sm flex items-center justify-center gap-2 hover:bg-primary/90 transition-colors active:scale-[0.98]">
+<span class="material-symbols-outlined text-sm" data-icon="send">send</span> Send Request
+                </button>
+</div>
+<!-- Profile Card 2 -->
+<div class="glass-card rounded-xl p-6 flex flex-col gap-4 relative overflow-hidden group">
+<div class="absolute -top-12 -right-12 w-32 h-32 bg-secondary-fixed rounded-full blur-3xl opacity-20 group-hover:opacity-40 transition-opacity"></div>
+<div class="flex justify-between items-start z-10">
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 rounded-full avatar-gradient-2 flex items-center justify-center text-on-secondary-container shadow-sm border border-white/20">
+<span class="material-symbols-outlined" data-icon="waves" data-weight="fill" style="font-variation-settings: 'FILL' 1;">waves</span>
+</div>
+<div>
+<h3 class="text-headline-md font-headline-md text-text-main">CalmOcean</h3>
+<span class="inline-flex items-center gap-1 text-label-sm font-label-sm text-outline">
+                                Offline
+                            </span>
+</div>
+</div>
+</div>
+<div class="space-y-2 z-10">
+<p class="text-label-sm font-label-sm text-outline font-semibold uppercase tracking-wider text-[11px]">Shared Experience</p>
+<div class="inline-block px-3 py-1 bg-surface-container-high text-on-surface-variant rounded-md text-label-sm font-label-sm">
+                        Work Stress
+                    </div>
+</div>
+<div class="space-y-2 z-10">
+<p class="text-label-sm font-label-sm text-outline font-semibold uppercase tracking-wider text-[11px]">Interests</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 bg-surface-bright/50 border border-outline-variant/20 rounded text-label-sm font-label-sm text-on-surface-variant text-xs">Yoga</span>
+<span class="px-2 py-1 bg-surface-bright/50 border border-outline-variant/20 rounded text-label-sm font-label-sm text-on-surface-variant text-xs">Cooking</span>
+</div>
+</div>
+<button class="mt-auto z-10 w-full h-[48px] border-2 border-primary text-primary rounded-lg text-label-sm font-label-sm flex items-center justify-center gap-2 hover:bg-primary/5 transition-colors active:scale-[0.98]">
+<span class="material-symbols-outlined text-sm" data-icon="send">send</span> Send Request
+                </button>
+</div>
+<!-- Profile Card 3 -->
+<div class="glass-card rounded-xl p-6 flex flex-col gap-4 relative overflow-hidden group">
+<div class="absolute -top-12 -right-12 w-32 h-32 bg-surface-container-highest rounded-full blur-3xl opacity-50 group-hover:opacity-70 transition-opacity"></div>
+<div class="flex justify-between items-start z-10">
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 rounded-full avatar-gradient-3 flex items-center justify-center text-on-surface-variant shadow-sm border border-white/20">
+<span class="material-symbols-outlined" data-icon="wb_sunny" data-weight="fill" style="font-variation-settings: 'FILL' 1;">wb_sunny</span>
+</div>
+<div>
+<h3 class="text-headline-md font-headline-md text-text-main">MorningSun</h3>
+<span class="inline-flex items-center gap-1 text-label-sm font-label-sm text-secondary">
+<span class="w-2 h-2 rounded-full bg-success-teal"></span> Active now
+                            </span>
+</div>
+</div>
+</div>
+<div class="space-y-2 z-10">
+<p class="text-label-sm font-label-sm text-outline font-semibold uppercase tracking-wider text-[11px]">Shared Experience</p>
+<div class="inline-block px-3 py-1 bg-surface-container-high text-on-surface-variant rounded-md text-label-sm font-label-sm">
+                        Social Anxiety
+                    </div>
+</div>
+<div class="space-y-2 z-10">
+<p class="text-label-sm font-label-sm text-outline font-semibold uppercase tracking-wider text-[11px]">Interests</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 bg-surface-bright/50 border border-outline-variant/20 rounded text-label-sm font-label-sm text-on-surface-variant text-xs">Gaming</span>
+<span class="px-2 py-1 bg-surface-bright/50 border border-outline-variant/20 rounded text-label-sm font-label-sm text-on-surface-variant text-xs">Pets</span>
+<span class="px-2 py-1 bg-surface-bright/50 border border-outline-variant/20 rounded text-label-sm font-label-sm text-on-surface-variant text-xs">Music</span>
+</div>
+</div>
+<button class="mt-auto z-10 w-full h-[48px] bg-primary text-on-primary rounded-lg text-label-sm font-label-sm flex items-center justify-center gap-2 hover:bg-primary/90 transition-colors active:scale-[0.98]">
+<span class="material-symbols-outlined text-sm" data-icon="send">send</span> Send Request
+                </button>
+</div>
+</div>
+</main>
+<!-- Floating SOS Button -->
+<div class="sos-button-wrapper">
+<button aria-label="Press and hold for SOS" class="sos-button group" id="sosButton">
+<span class="material-symbols-outlined text-2xl z-10" data-icon="sos">sos</span>
+<div class="sos-progress z-0"></div>
+</button>
+</div>
+<!-- Mobile Bottom Nav Bar -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 backdrop-blur-md rounded-t-xl bg-surface-container-low/80 dark:bg-surface-container-highest/80 shadow-[0_8px_24px_rgba(45,125,142,0.08)] flex justify-around items-center px-2 pb-4 pt-2">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant py-1 hover:bg-surface-container-high dark:hover:bg-surface-variant rounded-full px-2" href="#">
+<span class="material-symbols-outlined" data-icon="chat">chat</span>
+<span class="text-label-sm font-label-sm">Chat</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container dark:bg-on-secondary-fixed-variant text-on-secondary-container dark:text-secondary-fixed rounded-full py-1 scale-90 transition-all duration-300 px-2" href="#">
+<span class="material-symbols-outlined" data-icon="group" data-weight="fill" style="font-variation-settings: 'FILL' 1;">group</span>
+<span class="text-label-sm font-label-sm">Peers</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant py-1 hover:bg-surface-container-high dark:hover:bg-surface-variant rounded-full px-2" href="#">
+<span class="material-symbols-outlined" data-icon="smart_toy">smart_toy</span>
+<span class="text-label-sm font-label-sm">AI</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant py-1 hover:bg-surface-container-high dark:hover:bg-surface-variant rounded-full px-2" href="#">
+<span class="material-symbols-outlined" data-icon="medical_services">medical_services</span>
+<span class="text-label-sm font-label-sm">Health</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant py-1 hover:bg-surface-container-high dark:hover:bg-surface-variant rounded-full px-2" href="#" style="opacity: 0;">
+<span class="material-symbols-outlined" data-icon="videogame_asset">videogame_asset</span>
+<span class="text-label-sm font-label-sm">Games</span>
+</a><a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant py-1 hover:bg-surface-container-high dark:hover:bg-surface-variant rounded-full px-2" href="#">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+<span class="text-label-sm font-label-sm">More</span>
+</a>
+</nav>
+<script>
+        // SOS Button Interaction Logic
+        const sosBtn = document.getElementById('sosButton');
+        let holdTimer;
+        const HOLD_DURATION = 2000; // 2 seconds
+
+        const startHold = (e) => {
+            // Prevent default touch behaviors like context menu or scrolling if needed
+            // e.preventDefault(); 
+            sosBtn.classList.add('holding');
+            holdTimer = setTimeout(() => {
+                triggerSOS();
+                sosBtn.classList.remove('holding');
+            }, HOLD_DURATION);
+        };
+
+        const endHold = () => {
+            clearTimeout(holdTimer);
+            sosBtn.classList.remove('holding');
+        };
+
+        const triggerSOS = () => {
+            // In a real app, this would trigger the emergency protocol
+            alert('SOS Triggered! Connecting to emergency support...');
+        };
+
+        sosBtn.addEventListener('mousedown', startHold);
+        sosBtn.addEventListener('mouseup', endHold);
+        sosBtn.addEventListener('mouseleave', endHold);
+        
+        sosBtn.addEventListener('touchstart', startHold, {passive: true});
+        sosBtn.addEventListener('touchend', endHold);
+        sosBtn.addEventListener('touchcancel', endHold);
+    </script>
+
+
+</body></html>
